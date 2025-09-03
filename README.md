@@ -1,19 +1,24 @@
 # Project SURAKSHA
 
-A multi-layered mobile safety application for tourists in remote, zero-connectivity environments.
+A multi-layered mobile safety application for tourists, combining proactive threat intelligence with a resilient, zero-connectivity emergency response system.
 
 ---
 
 ## Core Problem
 
-Tourist safety in remote areas is compromised by the lack of reliable communication. Standard apps fail when GPS or cellular networks are unavailable, leaving individuals stranded and rescue operations delayed.
+Tourist safety in remote areas is compromised by the lack of reliable communication. Standard apps fail when GPS or cellular networks are unavailable, leaving individuals stranded and rescue operations delayed. Furthermore, tourists often lack real-time awareness of localized, emerging threats.
 
 ## Our Solution
 
-SURAKSHA provides a resilient safety net that functions even when all networks are down. Our key innovations are:
+SURAKSHA provides a complete safety ecosystem that functions even when all networks are down. It is built on four key innovations:
 
-- **Tiered Communication Cascade:** An intelligent system that automatically switches between Internet (HTTPS), SMS, and a peer-to-peer **Ad-Hoc Mesh Network** to transmit an SOS.
-- **"Digital Breadcrumbs" & Dead Reckoning:** When GPS fails, the app uses on-device sensors and a **Kalman Filter** to accurately track a user's path, enabling them to backtrack to safety.
+- **Proactive Threat Intelligence:** A backend engine analyzes news data (crime, animal attacks) to create a "threat heatmap." This is cached on the device, providing **offline geofencing alerts** to warn tourists before they enter a high-risk area.
+
+- **Automated Wellness Checks:** A backend AI monitors for anomalous travel patterns (e.g., prolonged inactivity off-trail). If a potential distress event is detected, the system can trigger an alert even if the user is physically unable to.
+
+- **Tiered Communication Cascade:** An intelligent system that automatically switches between Internet (HTTPS), SMS, and a peer-to-peer **Ad-Hoc Mesh Network** to transmit an SOS, prioritizing connections to nearby Rangers acting as mobile gateways.
+
+- **Blockchain-Anchored Auditing:** Critical event logs are asynchronously notarized to the Polygon blockchain. This creates a **tamper-proof, immutable audit trail** for evidence and reporting, without impacting the real-time performance of the app.
 
 ---
 
@@ -22,8 +27,10 @@ SURAKSHA provides a resilient safety net that functions even when all networks a
 **Backend:**
 
 - Node.js with Express.js
-- PostgreSQL
+- MongoDB
 - Twilio SMS Gateway
+- NewsAPI.org for threat intelligence
+- Polygon SDK for blockchain anchoring
 
 **Mobile App:**
 
@@ -33,7 +40,8 @@ SURAKSHA provides a resilient safety net that functions even when all networks a
 
 **AI/ML:**
 
-- JavaScript implementation of a Kalman Filter for on-device sensor fusion.
+- **On-Device:** JavaScript implementation of a Kalman Filter for sensor fusion.
+- **Backend:** Python model for travel path anomaly detection.
 
 ---
 
@@ -43,7 +51,7 @@ SURAKSHA provides a resilient safety net that functions even when all networks a
 
 1. Navigate to the `backend` directory: `cd backend`
 2. Install dependencies: `npm install`
-3. Set up your `.env` file with database and Twilio credentials.
+3. Set up your `.env` file with database and service credentials.
 4. Run the server: `npm start`
 
 ### Mobile App
@@ -55,9 +63,9 @@ SURAKSHA provides a resilient safety net that functions even when all networks a
 
 ---
 
-### Team BODMAS
+### Team B.O.D.M.A.S.
 
 - **Backend:** TBD, TBD
 - **Mobile App (UI & State):** TBD
 - **Mobile App (Hardware & Connectivity):** TBD, TBD
-- **AI/ML (Sensor Fusion):** TBD
+- **AI/ML (Sensor Fusion & Anomaly Detection):** TBD
