@@ -4,11 +4,16 @@ const pairDeviceWithQrCode = (qrCodeData) => {
   return apiClient.post("/auth/pair", { qrCodeData });
 };
 
-const verifyPin = (pin) => {
-  return apiClient.post("/auth/verify-pin", { pin });
+const requestOtp = (mobileNumber) => {
+  return apiClient.post("/auth/otp/request", { mobileNumber });
+};
+
+const verifyOtp = (mobileNumber, otp) => {
+  return apiClient.post("/auth/otp/verify", { mobileNumber, otp });
 };
 
 export const authApi = {
   pairDeviceWithQrCode,
-  verifyPin,
+  requestOtp,
+  verifyOtp,
 };
