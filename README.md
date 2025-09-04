@@ -65,7 +65,14 @@ SURAKSHA provides a complete safety ecosystem that functions even when all netwo
 
 ### Team B.O.D.M.A.S.
 
-- **Backend:** TBD, TBD
-- **Mobile App (UI & State):** TBD
-- **Mobile App (Hardware & Connectivity):** TBD, TBD
-- **AI/ML (Sensor Fusion & Anomaly Detection):** TBD
+#### Mobile App Team
+
+- [Priyansh Dimri](https://github.com/priyansh-dimri)
+- [Gaurav Kumar](https://github.com/gauravkumar1364)
+
+#### Backend and AI/ML Team
+
+- [Aryan Sharma](https://github.com/Aryns293)
+- [Akhilesh Negi](https://github.com/AKHILESH2208)
+- [Ishit Yadav](https://github.com/ishityadav)
+- [Shreya](https://github.com/ShreyaDTU59)
