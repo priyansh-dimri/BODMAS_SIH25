@@ -17,6 +17,7 @@
     "axios": "^1.11.0",
     "expo": "~53.0.22",
     "expo-camera": "^16.1.11",
+    "expo-local-authentication": "^16.0.5",
     "expo-location": "^18.1.6",
     "expo-sensors": "^14.1.4",
     "expo-sqlite": "^15.2.14",
