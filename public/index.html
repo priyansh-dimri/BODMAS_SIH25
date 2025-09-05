@@ -1,89 +1,157 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/12.2.1/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/12.2.1/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/12.2.1/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/12.2.1/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/12.2.1/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/12.2.1/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/12.2.1/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/12.2.1/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/12.2.1/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/12.2.1/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Authentication System</title>
+  <script defer src="/__/firebase/10.13.1/firebase-app-compat.js"></script>
+  <script defer src="/__/firebase/10.13.1/firebase-auth-compat.js"></script>
+  <script defer src="/__/firebase/10.13.1/firebase-database-compat.js"></script>
+  <script defer src="/__/firebase/10.13.1/firebase-firestore-compat.js"></script>
+  <script defer src="/__/firebase/10.13.1/firebase-functions-compat.js"></script>
+  <script defer src="/__/firebase/10.13.1/firebase-messaging-compat.js"></script>
+  <script defer src="/__/firebase/10.13.1/firebase-storage-compat.js"></script>
+  <script defer src="/__/firebase/10.13.1/firebase-analytics-compat.js"></script>
+  <script defer src="/__/firebase/10.13.1/firebase-remote-config-compat.js"></script>
+  <script defer src="/__/firebase/10.13.1/firebase-performance-compat.js"></script>
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  
+  <style media="screen">
+    body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 100px auto; background: white; border-radius: 8px; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .auth-button { display: block; width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; text-decoration: none; text-align: center; }
+    .google-btn { background: #db4437; color: white; }
+    .google-btn:hover { background: #c23321; }
+    .qr-btn { background: #4CAF50; color: white; }
+    .otp-btn { background: #2196F3; color: white; }
+    h1 { text-align: center; color: #333; }
+    .auth-methods { margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Authentication System</h1>
+    <p style="text-align: center; color: #666;">Choose your preferred authentication method</p>
+    
+    <div class="auth-methods">
+      <a href="/auth/google" class="auth-button google-btn">
+        📧 Sign in with Google
+      </a>
+      
+      <button onclick="authenticateWithQR()" class="auth-button qr-btn">
+        📱 QR Code Authentication
+      </button>
+      
+      <button onclick="showOTPForm()" class="auth-button otp-btn">
+        💬 OTP Authentication
+      </button>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    <div id="otp-form" style="display: none; margin-top: 20px;">
+      <input type="tel" id="mobile" placeholder="Enter mobile number" style="width: 100%; padding: 10px; margin: 5px 0;">
+      <button onclick="requestOTP()" class="auth-button" style="background: #FF5722;">Send OTP</button>
+      
+      <div id="otp-verify" style="display: none; margin-top: 10px;">
+        <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6" style="width: 100%; padding: 10px; margin: 5px 0;">
+        <button onclick="verifyOTP()" class="auth-button" style="background: #4CAF50;">Verify OTP</button>
+      </div>
+    </div>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+    <div id="result" style="margin-top: 20px; padding: 10px; display: none;"></div>
+  </div>
+
+  <script>
+    function showOTPForm() {
+      document.getElementById('otp-form').style.display = 'block';
+    }
+
+    async function requestOTP() {
+      const mobile = document.getElementById('mobile').value;
+      if (!mobile) {
+        alert('Please enter mobile number');
+        return;
+      }
+
+      try {
+        const response = await fetch('/auth/otp/request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobileNumber: mobile })
+        });
+        
+        const result = await response.json();
+        if (response.ok) {
+          document.getElementById('otp-verify').style.display = 'block';
+          showResult('OTP sent successfully! Check console for OTP.', 'success');
+        } else {
+          showResult(result.error, 'error');
         }
-      });
-    </script>
-  </body>
+      } catch (error) {
+        showResult('Error requesting OTP', 'error');
+      }
+    }
+
+    async function verifyOTP() {
+      const mobile = document.getElementById('mobile').value;
+      const otp = document.getElementById('otp').value;
+
+      try {
+        const response = await fetch('/auth/otp/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobileNumber: mobile, otp: otp })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          localStorage.setItem('authToken', result.token);
+          showResult(`Welcome ${result.user.name}! Token saved.`, 'success');
+        } else {
+          showResult(result.error, 'error');
+        }
+      } catch (error) {
+        showResult('Error verifying OTP', 'error');
+      }
+    }
+
+    async function authenticateWithQR() {
+      const qrData = prompt('Enter QR Code data:') || 'demo-qr-' + Date.now();
+      
+      try {
+        const response = await fetch('/auth/pair', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ qrCodeData: qrData })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          localStorage.setItem('authToken', result.token);
+          showResult(`Welcome ${result.user.name}! Token saved.`, 'success');
+        } else {
+          showResult(result.error, 'error');
+        }
+      } catch (error) {
+        showResult('Error with QR authentication', 'error');
+      }
+    }
+
+    function showResult(message, type) {
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.textContent = message;
+      resultDiv.style.background = type === 'success' ? '#4CAF50' : '#f44336';
+      resultDiv.style.color = 'white';
+      resultDiv.style.borderRadius = '4px';
+    }
+
+    // Check URL parameters for Google auth results
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    if (token) {
+      localStorage.setItem('authToken', token);
+      showResult('Google authentication successful! Token saved.', 'success');
+    }
+  </script>
+</body>
 </html>
