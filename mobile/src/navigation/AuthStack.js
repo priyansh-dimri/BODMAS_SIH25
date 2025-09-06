@@ -3,18 +3,25 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 
+import OTPScreen from '../screens/auth/OTPScreen.js'; 
+import UserDetailsScreen from '../screens/auth/UserDetailsScreen.js';
+
 const Stack = createStackNavigator();
 
 export default function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false, // Hides the default header
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
-      {/* You can add other screens like 'ForgotPassword' here */}
+
+    
+      <Stack.Screen name="OTP" component={OTPScreen} /> 
+      <Stack.Screen name="UserDetails" component={UserDetailsScreen} /> 
+      
     </Stack.Navigator>
   );
 }

@@ -6,7 +6,7 @@ import {
   TouchableOpacity, 
   StatusBar, 
   TextInput,
-  ScrollView // Use ScrollView for better handling keyboard and smaller screens
+  ScrollView 
 } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'; // For navigation
@@ -19,16 +19,15 @@ export default function RegisterScreen() {
   const [contact3, setContact3] = useState('');
 
   const handleRegister = () => {
-    // Implement your registration logic here
-    console.log('Registering with:', {
-      phoneNumber,
-      contact1,
-      contact2,
-      contact3,
-    });
-    alert('Registration logic would go here!');
-    // Example: Navigate to next screen after registration
-    // navigation.navigate('VerificationScreen'); 
+    if (phoneNumber.length < 10) {
+      alert('Please enter a valid phone number.');
+      return;
+    }
+    // In a real app, you would call your backend here to send an OTP
+    console.log('Navigating to OTP screen with phone number:', phoneNumber);
+    
+    // Navigate to the OTP screen and pass the phone number as a parameter
+    navigation.navigate('OTP', { phoneNumber: phoneNumber }); 
   };
 
   return (
